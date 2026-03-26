@@ -18,15 +18,15 @@ body {
 
 h1 {
   color: white;
-  font-size: 60px;
+  font-size: 50px;
   text-align: center;
   text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
 }
 
 .heart {
   position: absolute;
-  color: rgba(255,255,255,0.7);
-  animation: float 6s linear infinite;
+  color: rgba(255,255,255,0.8);
+  animation: float 5s linear infinite;
 }
 
 @keyframes float {
@@ -46,23 +46,30 @@ h1 {
 
 <h1>I love you Maaalu ❤️</h1>
 
-<audio autoplay loop>
+<!-- Music (tap anywhere to play on iPhone) -->
+<audio id="music" loop>
   <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+// Play music on first tap (required for iPhone)
+document.body.addEventListener("click", function() {
+  document.getElementById("music").play();
+});
+
+// Floating hearts
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
   heart.innerHTML = "❤️";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 30 + 20 + "px";
+  heart.style.fontSize = (Math.random() * 25 + 20) + "px";
   heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
   document.body.appendChild(heart);
 
   setTimeout(() => {
     heart.remove();
-  }, 6000);
+  }, 5000);
 }
 
 setInterval(createHeart, 300);
